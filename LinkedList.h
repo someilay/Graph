@@ -2,7 +2,7 @@
 #define GRAPH_LINKED_LIST_H
 
 struct linkedList{
-    void (*size)(void* this);
+    int (*size)(void* this);
     int (*isEmpty)(void* this);
     void (*addLast)(void* this, void* object);
     void (*add)(void* this, void* object, int i);
