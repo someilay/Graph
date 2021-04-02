@@ -55,6 +55,7 @@ void add(void* this, void* object, int i){
     int j = 0;
     while (cur != last && j != i){
         cur = cur->next;
+        j++;
     }
 
     if (cur != last){
@@ -95,6 +96,7 @@ void* remove(void* this, int i){
     int j = 0;
     while (cur != last && j != i){
         cur = cur->next;
+        j++;
     }
 
     if (cur != last){
@@ -119,6 +121,7 @@ void* get(void* this, int i){
     int j = 0;
     while (cur != last && j != i){
         cur = cur->next;
+        j++;
     }
 
     return cur->object;
