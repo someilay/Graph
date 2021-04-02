@@ -7,7 +7,7 @@ struct container{
     struct container* previous;
 } typedef Container;
 
-Container* createContainer();
+Container* createEmptyContainer();
 Container* createContainer(void* object, Container* next, Container* previous);
 
 #endif
