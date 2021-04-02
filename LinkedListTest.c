@@ -6,11 +6,11 @@
 #include "time.h"
 #include "LinkedList.h"
 
-const int MAX_SIZE = 20;
+const int MAX_SIZE = 50;
 const int MIN_SIZE = 5;
 
-const int MAX_VALUE = 50;
-const int MIN_VALUE = -50;
+const int MAX_VALUE = 100;
+const int MIN_VALUE = -100;
 
 void* boxing(int value){
     void* out = malloc(sizeof(int));
@@ -36,6 +36,7 @@ void testLinkedList() {
     LinkedList* list = createLinkedList();
 
     printf("Start of test...\n");
+    printf("Size of list: %d\n", size);
     printf("Adding to the list:\n");
 
     for (int i = 0; i < size; i++) {
