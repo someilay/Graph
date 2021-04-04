@@ -4,6 +4,7 @@
 
 #define DIRECTED 1
 #define SELF_LOOP 0
+#define MULTI_GRAPH 0
 
 struct graph{
     int (*numberOfNodes)(void* this);
