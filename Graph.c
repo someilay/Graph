@@ -66,11 +66,11 @@ void addEdge(void* this, int i, int j){
 
 void* removeNode(void* this, int i){
     LinkedList* list = getList(this);
-    //It can lead to bugs
 #if DIRECTED == 0
     Node *removed = list->get(list, i);
 
-    for (int j = 0; j < removed->adjacencyList->size(removed->adjacencyList); j++) {
+    int j = 0;
+    while (j < removed->adjacencyList->size(removed->adjacencyList)) {
         Node* adjacentNode = removed->adjacencyList->get(removed->adjacencyList, j);
 
         int k = 0;
@@ -83,6 +83,8 @@ void* removeNode(void* this, int i){
             }
             k++;
         }
+
+        j++;
     }
 #endif
 
@@ -92,6 +94,12 @@ void* removeNode(void* this, int i){
 void removeEdge(void* this, int i, int j){
     LinkedList* list = getList(this);
 
+#if SELF_LOOP == 0
+    if (i == j){
+        return;
+    }
+#endif
+
     void *vFirst = list->get(list, i);
     void *vSecond = list->get(list, j);
 
@@ -99,7 +107,29 @@ void removeEdge(void* this, int i, int j){
         Node *first = toNode(vFirst);
         Node *second = toNode(vSecond);
 
+        int k = 0;
+        while (k < first->adjacencyList->size(first->adjacencyList)) {
+            if (first->adjacencyList->get(first->adjacencyList, k) == vSecond){
+                first->adjacencyList->remove(first->adjacencyList, k);
+#if MULTI_GRAPH == 0
+                break;
+#endif
+            }
+            k++;
+        }
 
+#if DIRECTED == 0
+        k = 0;
+        while (k < second->adjacencyList->size(second->adjacencyList)){
+            if (second->adjacencyList->get(second->adjacencyList, k) == vFirst){
+                second->adjacencyList->remove(second->adjacencyList, k);
+#if MULTI_GRAPH == 0
+                break;
+#endif
+            }
+            k++;
+        }
+#endif
     }
 }
 
@@ -116,6 +146,7 @@ Graph *createGraph() {
     out->add = addNode;
     out->addEdge = addEdge;
     out->remove = removeNode;
+    out->removeEdge = removeEdge;
 
     return out;
 }
