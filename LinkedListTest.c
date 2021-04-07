@@ -6,23 +6,23 @@
 #include "time.h"
 #include "LinkedList.h"
 
-const int MAX_SIZE = 50;
-const int MIN_SIZE = 5;
+static const int MAX_SIZE = 50;
+static const int MIN_SIZE = 5;
 
-const int MAX_VALUE = 100;
-const int MIN_VALUE = -100;
+static const int MAX_VALUE = 100;
+static const int MIN_VALUE = -100;
 
-void* boxing(int value){
+static void* boxing(int value){
     void* out = malloc(sizeof(int));
     (*((int*)out)) = value;
     return out;
 }
 
-int unboxing(void* box){
+static int unboxing(void* box){
     return *((int*)box);
 }
 
-void printList(LinkedList* list){
+static void printList(LinkedList* list){
     for (int i = 0; i < list->size(list); i++) {
         printf("%d ", unboxing(list->get(list, i)));
     }
