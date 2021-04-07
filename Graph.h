@@ -1,6 +1,5 @@
 #ifndef GRAPH_GRAPH_H
 #define GRAPH_GRAPH_H
-#include "LinkedList.h"
 
 #define DIRECTED 1
 #define SELF_LOOP 0
