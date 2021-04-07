@@ -1,8 +1,6 @@
 #include <malloc.h>
 #include "Graph.h"
 #include "Private.h"
-#include "LinkedList.h"
-#include "Node.h"
 
 #define NUMBER_OF_PRIVATE_FIELDS 1
 #define LIST_OF_NODES 0
@@ -133,6 +131,11 @@ void removeEdge(void* this, int i, int j){
     }
 }
 
+Node* getNode(void* this, int i){
+    LinkedList* list = getList(this);
+    return (Node*)list->get(list, i);
+}
+
 Graph *createGraph() {
     Graph* out = malloc(sizeof(Graph) + sizeof(void*));
     void** p_out = (void**)out;
@@ -147,6 +150,7 @@ Graph *createGraph() {
     out->addEdge = addEdge;
     out->remove = removeNode;
     out->removeEdge = removeEdge;
+    out->get = getNode;
 
     return out;
 }
