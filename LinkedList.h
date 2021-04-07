@@ -12,5 +12,6 @@ struct linkedList{
 } typedef LinkedList;
 
 LinkedList* createLinkedList();
+void* destroyLinkedList(LinkedList* list, void (*doWithObject)(void*));
 
 #endif

@@ -156,3 +156,29 @@ LinkedList *createLinkedList() {
 
     return out;
 }
+
+void *destroyLinkedList(LinkedList *list, void (*doWithObject)(void*)) {
+    Private* aPrivate = getPrivate(list);
+    Container* first = getFirstContainer(list);
+    Container* last = getLastContainer(list);
+    int* size = p_size(list);
+
+    Container *cur = first->next;
+
+    while (cur != last){
+        cur = cur->next;
+
+        if (doWithObject != NULL){
+            doWithObject(cur->previous->object);
+        }
+
+        free(cur->previous);
+    }
+
+    free(first);
+    free(last);
+    free(size);
+    destroyPrivate(aPrivate);
+
+    return (void*)list;
+}
