@@ -6,5 +6,6 @@ struct private{
 } typedef Private;
 
 Private* createPrivate(int n);
+void* destroyPrivate(Private* aPrivate);
 
 #endif

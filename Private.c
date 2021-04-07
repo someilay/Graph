@@ -8,3 +8,9 @@ Private *createPrivate(int n) {
 
     return out;
 }
+
+void *destroyPrivate(Private *aPrivate) {
+    free(aPrivate->privateField);
+    free(aPrivate);
+    return (void*)aPrivate;
+}
