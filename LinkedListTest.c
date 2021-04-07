@@ -65,6 +65,7 @@ void testLinkedList() {
     }
 
     printf("\nEnd of tess...\n");
+    destroyLinkedList(list, free);
 }
 
 #endif
